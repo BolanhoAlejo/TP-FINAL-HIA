@@ -1,4 +1,4 @@
-To use the backend create the .env file:To use the backend create the .env file with the following content:
+To use the backend create the .env file with the following content:
 
 MONGODB_URI="mongodb://localhost/proyectofinal'
 
