@@ -1,0 +1,50 @@
+<div class="container mt-5 w-75">
+  <h1 class="text-start ms-2" style="font-weight: bold;">Mi Perfil</h1>
+  <div class="card mb-4 p-4">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label"><strong>Nombre de Usuario:</strong></label>
+        <span class="ms-2">{{usuario?.nombreUsuario}}</span>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label"><strong>Correo electrónico:</strong></label>
+        <span class="ms-2">{{usuario?.email}}</span>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label"><strong>Nombre(s):</strong></label>
+        <span class="ms-2">{{usuario?.nombre}}</span>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label"><strong>Apellido(s):</strong></label>
+        <span class="ms-2">{{usuario?.apellido}}</span>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label"><strong>Teléfono:</strong></label>
+        <span class="ms-2">{{usuario?.telefono}}</span>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label"><strong>Rol:</strong></label>
+        <span class="ms-2">{{usuario?.rol}}</span>
+      </div>
+      <div class="col-md-12 text-end">
+        <a href="/usuarioForm/{{usuario?._id}}" class="btn text-white w-25" style="background-color: rgb(37, 37, 102);">Editar perfil</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- <h1 class="text-start ms-2" style="font-weight: bold;">Favoritos</h1>
+  <div class="border p-3 rounded mb-2">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 mb-3" *ngFor="let p of favoritosPorUsuario">
+        <div class="card h-100">
+          <img [src]="p.imagenURL" alt="{{p.nombre}}" class="img-fluid me-3" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h4 class="card-title text-start poppins-bold">{{p.nombre}}</h4>
+            <p class="card-text"><strong>Descripción:</strong> {{p.descripcion}}</p>
+            <p class="card-text"><strong>Precio:</strong> {{p.precio}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>

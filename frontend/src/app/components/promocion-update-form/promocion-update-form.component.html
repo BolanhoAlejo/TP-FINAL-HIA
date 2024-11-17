@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="d-flex justify-content-center mt-5 me-5 ms-5 mb-1">
+      <div class="card w-100" style="background-color: rgba(255,255,255,0.6)">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-4">Actualizar Promocion</h5>
+          <form (ngSubmit)="updatePromocion()">
+            <div class="mb-3 input-group">
+              <span class="input-group-text bg-light"><i class="bi  bi-card-text"></i></span>
+              <input type="text" class="form-control bg-light" id="descripcion" placeholder="Descripción de la promocion " [(ngModel)]="promocion.descripcion" name="descripcionPromocion" value={{promocion.descripcion}}>
+            </div>
+            <div class="mb-3 input-group">
+              <span class="input-group-text bg-light"><i class="bi bi-calendar"></i></span>
+              <input type="date" class="form-control bg-light" id="fechaInicio" placeholder="Fecha Inicio " [(ngModel)]="promocion.fechaInicio" name="fechaInicioPromocion" value={{promocion.fechaInicio}}>
+            </div>
+            <div class="mb-3 input-group">
+              <span class="input-group-text bg-light"><i class="bi bi-calendar"></i></span>
+              <input type="date" class="form-control bg-light" id="fechaFin" placeholder="Fecha Fin" [(ngModel)]="promocion.fechaFin" name="fechaFinPromocion" value="{{promocion.fechaFin}}">
+            </div>
+            <div class="mb-3 input-group">
+              <span class="input-group-text bg-light"><i class="bi bi-123"></i></span>
+              <input type="text" class="form-control bg-light" id="descuento" placeholder="Descuento de Promocion" [(ngModel)]="promocion.descuento" name="promocionDescuento" value="{{promocion.descuento}}">
+            </div>
+            <div class="mb-3 input-group">
+              <span class="input-group-text bg-light"><i class="bi bi-box"></i></span>
+              <select class="form-select">
+                <option selected>Seleccionar Productos</option>
+                <option *ngFor="let producto of productos" [value]="producto._id" (click)="agregarProductoPromocion(producto)">{{producto.codProducto + "-" + producto.nombre}}</option>
+              </select>
+            </div>
+            <div class="mb-3 input-group">
+              <div *ngFor="let producto of promocion.productos" class="btn-group me-2 mb-2">
+                <button type="button" class="btn btn-outline-secondary">
+                  {{producto.codProducto}}
+                </button>
+                <button type="button" class="btn btn-danger" (click)= "cancelar(producto,promocion)" ><i class="bi bi-x"></i></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6"><button type="button" class="btn w-100 text-white" style="background-color: #363d76"><i class="bi bi-x-circle"></i> Cancelar</button></div>
+              <div class="col-6"><button type="submit" class="btn w-100 text-white" style="background-color: #36763a"><i class="bi bi-check-circle"></i> Enviar</button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row me-5 ms-5 mb-5 mt-2">
+      <button class="btn w-100 text-white" [routerLink]="'/productoList'" style="background-color: #2c5c4a"><i class="bi bi-list"></i> Lista de Productos</button>
+    </div>
+  </div>
+  

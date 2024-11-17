@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-center mt-5 me-5 ms-5 mb-1">
+    <div class="card w-100" style="background-color: rgba(255,255,255,0.6)">
+      <div class="card-body">
+        <h5 class="card-title text-center mb-4">Actualizar Producto</h5>
+        <form [formGroup]="productoForm" (ngSubmit)="updateProducto()">
+          <input type="hidden" formControlName="_id"> <!-- Campo oculto para _id -->
+          <div class="mb-3 input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-code"></i></span>
+            <input type="number" class="form-control bg-light" id="codProducto" placeholder="Código del Producto" formControlName="codProducto">
+          </div>
+          <div class="mb-3 input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-box"></i></span>
+            <input type="text" class="form-control bg-light" id="nombre" placeholder="Nombre del producto" formControlName="nombre">
+          </div>
+          <div class="mb-3 input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-textarea-resize"></i></span>
+            <input type="text" class="form-control bg-light" id="descripcion" placeholder="Descripción del producto" formControlName="descripcion">
+          </div>
+          <div class="mb-3 input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-image"></i></span>
+            <input type="text" class="form-control bg-light" id="imagenURL" placeholder="Link de imagen del producto" formControlName="imagenURL">
+          </div>
+          <div class="mb-3 input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-currency-dollar"></i></span>
+            <input type="number" min="0.1" step="0.1" class="form-control bg-light" id="precio" placeholder="Precio" formControlName="precio">
+            <span class="input-group-text bg-light">.00</span>
+          </div>
+          <div class="mb-3 input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-stack"></i></span>
+            <input type="number" min="1" step="1" class="form-control bg-light" id="stock" placeholder="Stock" formControlName="stock">
+            <span class="input-group-text bg-light">unidades</span>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <button type="button" class="btn w-100 text-white" style="background-color: #363d76" (click)="volver()">
+                <i class="bi bi-x-circle"></i> Cancelar
+              </button>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn w-100 text-white" [disabled]="productoForm.invalid" style="background-color: #36763a">
+                <i class="bi bi-check-circle"></i> Actualizar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row me-5 ms-5 mb-5 mt-2">
+    <button class="btn w-100 text-white" [routerLink]="'/productoList'" style="background-color: #2c5c4a">
+      <i class="bi bi-list"></i> Lista de Productos
+    </button>
+  </div>
+</div>
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel"> {{titulo}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{mensaje}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="volver()" data-bs-dismiss="modal">Ir a la lista de productos</button>
+      </div>
+    </div>
+  </div>
+</div>

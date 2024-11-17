@@ -1,0 +1,63 @@
+<div class="container-fluid mt-5 w-75">
+    <!-- Carrusel de imágenes -->
+    <div id="imageCarousel" class="carousel slide mb-5 d-none d-lg-block" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://alcatraz.com.ar/img/cms/Slideshow/baja/indumentaria-tactica.jpg" class="d-block w-100" alt="Indumentaria Táctica">
+          <div class="carousel-caption d-none d-md-block">
+            <h1 class="p-2 poppins-bold">ALTAAL </h1> 
+            <h3 class="p-2 poppins-bold">Indumentaria Militar y Gendarmeria</h3> 
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://alcatraz.com.ar/img/cms/Slideshow/baja/borcegos-calzados.jpg" class="d-block w-100" alt="Borcegos Calzados">
+          <div class="carousel-caption d-none d-md-block">
+            <h1 class="p-2 poppins-bold">Hace tu pedido ¡Ahora!</h1>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  
+    <!-- Lista de productos -->
+    <h1 class="text-start ms-2 p-2 poppins-bold">Productos</h1>
+    <div id="productoCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div *ngFor="let chunk of chunkArray(productos, 4); let i = index" class="carousel-item" [class.active]="i === 0">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-3 mb-4" *ngFor="let p of chunk">
+              <div class="card h-100 shadow-sm">
+                <img [src]="p.imagenURL" class="card-img-top img-fluid" alt="{{p.nombre}}" style="width: 100%; height: 200px; object-fit: cover;">
+                <div class="card-body">
+                  <h4 class="card-title text-start poppins-bold">{{ p.nombre }}</h4>
+                  <p class="card-text poppins-regular"><strong>Código del Producto: </strong>{{ p.codProducto }}</p>
+                  <p class="card-text poppins-regular"><strong>Descripción: </strong>{{ p.descripcion! | acortador: 10 }}</p>
+                  <p class="card-text poppins-regular"><strong>Precio: </strong>{{ p.precio | currency }}</p>
+                  <p class="card-text poppins-regular"><strong>Stock: </strong>{{ p.stock }} unidades</p>
+                  <div class="text-end btn-group w-25">
+                    <button class="btn btn-sm poppins-regular text-white" [routerLink]="'/productoPopUp'" (click)="popUpProducto(p)" style="background-color: #586a6a;"><i class="bi bi-eye fw-bold text-white"></i></button>
+                  </div>
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#productoCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#productoCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  

@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg text-white" style="background-color: rgb(13, 0, 83);">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">ALTAAL</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+        <a *ngIf="isEmpleado()" class="nav-link text-white" [routerLink]="'/clienteList'">Ver Clientes</a>
+        <a *ngIf="isEmpleado()" class="nav-link text-white" [routerLink]="'/usuarioList'">Ver Usuarios</a>
+        <a *ngIf="isAdmin()" class="nav-link text-white" [routerLink]="'/empleadoList'">Ver Empleados</a>
+        <a *ngIf="isEmpleado()" class="nav-link text-white" [routerLink]="'/productoList'">Ver Productos</a>
+        <a *ngIf="isEmpleado()" class="nav-link text-white" [routerLink]="'/promocionList'">Ver Promociones</a>
+        <a class="nav-link text-white" [routerLink]="'/perfil'">Mi Perfil</a>
+        <a *ngIf="isEmpleado()" class="nav-link text-white" [routerLink]="'/facebook'">Generar Publicacion de Facebook</a>
+        <a *ngIf="isEmpleado()" class="nav-link text-white" [routerLink]="'/graficos'">Estadisticas</a>
+        <a class="nav-link text-white" [routerLink]="'/productosVenta'">Productos</a>
+      </div>
+    </div>
+
+    <!-- Botones de Iniciar Sesión y Registrarse -->
+    <div *ngIf="!isLogged(); else loggedIn" class="d-flex">
+      <button class="btn btn-sm me-1 text-white" style="background-color: #222e91;">
+        <a class="nav-link text-white" [routerLink]="'/facebook'" style="text-decoration: none;">
+          <i class="bi bi-facebook"></i> Publicar
+        </a>
+      </button>
+      <button class="btn btn-sm me-1" style="background-color: #366976;">
+        <a class="nav-link text-white" [routerLink]="'/login'" style="text-decoration: none;">
+          <i class="bi bi-person"></i> Iniciar Sesión
+        </a>
+      </button>
+      <button class="btn btn-sm" style="background-color: #666666;">
+        <a class="nav-link text-white" [routerLink]="'/register'" style="text-decoration: none;">
+          <i class="bi bi-person-add"></i> Registrarse
+        </a>
+      </button>
+    </div>
+    <ng-template #loggedIn>
+      <div class="d-flex gap-4">
+        <a> Hola! {{ usuario?.nombre }} {{ usuario?.apellido }} </a>
+        <button (click)="authService.logout()" class="btn btn-sm me-1" style="background-color: #363d76;">
+          <a class="nav-link text-white" [routerLink]="'/login'" style="text-decoration: none;">
+            <i class="bi bi-person"></i> Log Out
+          </a>
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</nav>

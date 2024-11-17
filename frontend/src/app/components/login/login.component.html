@@ -1,0 +1,28 @@
+<div class="container-fluid mt-5 w-50">
+  <div class="card mb-2">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Iniciar Sesión</h2>
+      <form [formGroup]="usuarioForm" (ngSubmit)="login()">
+        <div class="mb-3">
+          <label for="email" class="form-label"> Email </label>
+          <div class="input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+            <input formControlName="email" type="text" class="form-control bg-light" id="email" placeholder="Email">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
+            <input formControlName="contrasenia" type="password" class="form-control bg-light" id="password" placeholder="Contraseña">
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

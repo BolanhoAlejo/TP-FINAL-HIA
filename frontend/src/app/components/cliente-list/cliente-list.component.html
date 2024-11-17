@@ -1,0 +1,49 @@
+<div class="w-75 container mt-5">
+  <h2 class="text-center">Lista de Clientes Registrados</h2>
+
+  <div class="mt-3">
+    <button class="btn btn-success mb-3"><a class="nav-link" href="/clienteForm" routerLink="shop" routerLinkActive="active" ariaCurrentWhenActive="page">Nuevo Cliente</a></button>
+    <button class="btn btn-primary mb-3" (click)="getAll()">Actualizar</button>
+
+    <div class="mb-3">
+      <label for="id" class="form-label">ID del Cliente</label>
+      <input type="text" [(ngModel)]="filterId" id="id" class="form-control">
+    </div>
+
+    <button (click)="getClienteById()" class="btn btn-secondary mb-3">Obtener un cliente</button>
+    <div *ngIf="clientes.length > 0" style="background-color: mediumpurple;" class="mt-3"></div>
+
+    <h3>Clientes</h3>
+    <table class="table table-condensed table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th style="text-align: center">ID</th>
+          <th style="text-align: center">Nombre</th>
+          <th style="text-align: center">Apellido</th>
+          <th style="text-align: center">E-mail</th>
+          <th style="text-align: center">telefono</th>
+          <th style="text-align: center">Nombre usuario</th>
+          <th style="text-align: center" colspan="2">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of clientes">
+          <td>{{ c._id }}</td>
+          <td>{{ c.nombre }}</td>
+          <td>{{ c.apellido }}</td>
+          <td>{{ c.email }}</td>
+          <td>{{ c.telefono }}</td>
+          <td>{{ c.nombreUsuario }}</td>
+          <td align="center">
+            <button class="btn btn-success mb-3">
+              <a class="nav-link text-black" href="/clienteForm/{{ c._id }}" routerLink="shop" routerLinkActive="active" ariaCurrentWhenActive="page">Modificar</a>
+            </button>
+          </td>
+          <td align="center">
+            <button class="btn btn-danger mb-3" (click)="deleteCliente(c._id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

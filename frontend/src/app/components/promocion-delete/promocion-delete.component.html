@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6 mt-5 mb-5">
+            <div class="card shadow-lg border-0">
+                <div class="card-header text-white text-center" style="background-color: rgb(46, 42, 165);">
+                    <h5 class="mb-0">Se va a eliminar {{promocionEliminar.descripcion}}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <p><strong>Fecha Inicio: </strong>{{promocionEliminar.fechaInicio}}</p>
+                            <p><strong>Fecha Fin: </strong>{{promocionEliminar.fechaFin}}</p>
+                            <p><strong>Descuento: </strong>{{promocionEliminar.descuento}}</p>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <button class="btn btn-danger me-2" (click)="deletePromocion(promocionEliminar)">
+                                <i class="bi bi-trash-fill"></i> Eliminar
+                            </button>
+                            <button class="btn btn-secondary" (click)="cancelar()">
+                                <i class="bi bi-x-circle"></i> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

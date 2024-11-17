@@ -1,0 +1,26 @@
+<div class="container-fluid mt-5 w-75">
+  <h1 class="text-start mb-2 poppins-bold" style="font-weight: bold;">Publicación en Facebook</h1>
+
+  <div class="row">
+      <div class="col-12">
+          <form>
+              <div class="form-group">
+                  <label for="textoPublicacion">Ingrese el Texto de la publicación:</label>
+                  <textarea id="textoPublicacion" class="form-control" rows="5" [(ngModel)]="mensaje" name="mensaje"></textarea>
+              </div>
+              <button class="btn btn-primary mb-3 mt-3 w-100" (click)="postFb()">Postear</button>
+          </form>
+      </div>
+  </div>
+
+  <div class="row mt-3">
+      <div class="col-md-6">
+          <div *ngIf="publicacionExitosa === true" class="alert alert-success" role="alert">
+              Publicación realizada con éxito.
+          </div>
+          <div *ngIf="publicacionExitosa === false" class="alert alert-danger" role="alert">
+              Hubo un error al realizar la publicación.
+          </div>
+      </div>
+  </div>
+</div>

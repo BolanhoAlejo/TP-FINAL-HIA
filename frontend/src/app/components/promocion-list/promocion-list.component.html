@@ -1,0 +1,29 @@
+<div class="container-fluid mt-5 w-75">
+  <div class="row">
+    <div class="col-6">
+      <h1 class="text-start ms-2" style="font-weight: bold;">Promociones</h1>
+    </div>
+    <div class="col-6">
+      <a class="text-center btn m-0 nav-link text-white rounded-2 p-2 d-flex align-items-center justify-content-center" [routerLink]="'/promocionForm'" routerLinkActive="active" ariaCurrentWhenActive="page" style="background-color: #763636;">
+        <i class="bi bi-fire"></i><span class="ms-2">Nueva Promocion</span>
+      </a>
+    </div>
+  </div>
+  <div class="row border p-2 rounded rounded-2 mb-2">
+    <div class="col-12 col-md-6 col-lg-4 mb-1" *ngFor="let p of promociones">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-start" style="font-weight: 600;">{{p.descripcion?.toString() ?? ''| acortador : 20}}</h4>
+          <p class="card-text"><strong>Fecha de Inicio:</strong> {{ darFormatoFecha(p.fechaInicio?.toString() ?? '') }}</p>
+          <p class="card-text"><strong>Fecha de Fin:</strong> {{ darFormatoFecha(p.fechaFin?.toString() ?? '')}}</p>
+          <p class="card-text"><strong>Descuento:</strong> {{p.descuento}}%</p>
+          <div class="btn-group">
+            <button class="btn btn-sm" style="background-color: #7281f4" [routerLink]="'/promocionPopUp'" (click)="popUpPromocion(p)"><i class="bi bi-eye"></i></button>
+            <button class="btn btn-sm" style="background-color: #f7a682" [routerLink]="'/promocionUpdateForm'" (click)="cargarPromocionModificar(p._id!)"><i class="bi bi-pencil"></i></button>
+            <button class="btn btn-sm" style="background-color: #f07c7c" [routerLink]="'/promocionDelete'" (click)="eliminarPromocion(p)"><i class="bi bi-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

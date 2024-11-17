@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6 mt-5 mb-5">
+            <div class="card border border-1 border-dark">
+                <div class="card-header text-white text-center" style="background-color: brown;">
+                    <h5 class="mb-0">Se va a eliminar {{productoEliminar.nombre}}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
+                            <img [src]="productoEliminar.imagenURL" class="img-fluid rounded" alt="{{productoEliminar.nombre}}">
+                        </div>
+                        <div class="col-12 col-md-6 mt-5">
+                            <p><strong>Código del Producto: </strong>{{productoEliminar.codProducto}}</p>
+                            <p><strong>Descripción: </strong>{{productoEliminar.descripcion}}</p>
+                            <p><strong>Precio: </strong>{{productoEliminar.precio | currency}}</p>
+                            <p><strong>Stock: </strong>{{productoEliminar.stock}} unidades</p>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-6 text-center">
+                            <button class="btn btn-danger w-100" (click)="deleteProducto(productoEliminar)" style="background-color: brown;">
+                                <i class="bi bi-trash-fill"></i> Eliminar
+                            </button>
+                        </div>
+                        <div class="col-6 text-center">
+                            <button class="btn btn-secondary w-100" (click)="cancelar()">
+                                <i class="bi bi-x-circle"></i> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" style="background-color: rgba(122, 122, 122, 0.418);">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel"> {{titulo}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{mensaje}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn text-white" data-bs-dismiss="modal" style="background-color: #75594d;" (click)="volver()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

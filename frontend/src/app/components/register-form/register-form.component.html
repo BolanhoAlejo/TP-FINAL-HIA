@@ -1,0 +1,55 @@
+<div class="container-fluid mt-5 w-50">
+  <div class="card mb-2">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Registro de Usuario</h2>
+      <form [formGroup]="usuarioForm" (ngSubmit)="submitRegister()">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre">
+        </div>
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input formControlName="apellido" type="text" class="form-control" id="apellido" placeholder="Apellido">
+        </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">Usuario</label>
+          <div class="input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+            <input formControlName="nombreUsuario" type="text" class="form-control bg-light" id="username" placeholder="Usuario">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
+            <input formControlName="contrasenia" type="password" class="form-control bg-light" id="password" placeholder="Contraseña">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo Electrónico</label>
+          <div class="input-group">
+            <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
+            <input formControlName="email" type="email" class="form-control bg-light" id="email" placeholder="Correo Electrónico">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Telefono</label>
+          <input type="text" id="telefono" class="form-control" formControlName="telefono">
+        </div>
+        <!-- <div class="mb-3"> -->
+        <!--   <label for="tipoUsuario" class="form-label">Tipo de Usuario</label> -->
+        <!--   <select formControlName="rol" class="form-select" id="tipoUsuario"> -->
+        <!--     <option selected disabled>Seleccione...</option> -->
+        <!--     <option value="empleado">Empleado</option> -->
+        <!--     <option value="cliente">Cliente</option> -->
+        <!--   </select> -->
+        <!-- </div> -->
+        <div class="mb-3">
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

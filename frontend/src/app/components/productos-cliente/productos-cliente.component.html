@@ -1,0 +1,116 @@
+<div class="container-fluid mt-5 w-75">
+  <h1 class="text-start ms-2 p-2 poppins-bold">Productos</h1>
+
+  <div class="row">
+    <div class="col-3">
+      <div class="col-12 sticky-top" style="top: 20px;">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action" [class.active]="filtroSeleccionado === 'promocion'" (click)="filtrarProductos('promocion')">En Promoción</li>
+          <li class="list-group-item list-group-item-action" [class.active]="filtroSeleccionado === 'noPromocion'" (click)="filtrarProductos('noPromocion')">No en Promoción</li>
+          <li class="list-group-item list-group-item-action" [class.active]="filtroSeleccionado === 'todos'" (click)="filtrarProductos('todos')">Todos</li>
+        </ul>
+
+        <h5 class="mt-3 fw-bold">Filtrar por precio</h5>
+        <div class="mt-1">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="precio" id="precio1" (change)="filtrarPorPrecio('<5000')">
+            <label class="form-check-label" for="precio1">&lt; 5000 $</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="precio" id="precio2" (change)="filtrarPorPrecio('>=5000')">
+            <label class="form-check-label" for="precio2">&gt;= 5000 $</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="precio" id="precio3" (change)="filtrarPorPrecio('>=10000')">
+            <label class="form-check-label" for="precio3">&gt;= 10000 $</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="precio" id="precio4" (change)="filtrarPorPrecio('>=15000')">
+            <label class="form-check-label" for="precio4">&gt;= 15000 $</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-9">
+      <div class="row">
+        <div *ngFor="let producto of productosFiltrados" class="col-12 col-md-6 col-lg-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <img [src]="producto.imagenURL" class="card-img-top img-fluid" alt="{{producto.nombre}}" style="width: 100%; height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h4 class="card-title text-start poppins-bold">{{ producto.nombre }}</h4>
+              <p class="card-text poppins-regular"><strong>Descripción: </strong>{{ producto.descripcion! | acortador: 10 }}</p>
+              <p class="card-text poppins-regular"><strong>Precio: </strong>{{ producto.precio | currency }}</p>
+              <div class="text-end btn-group w-50">
+                <button class="btn btn-sm poppins-regular text-white" (click)="agregarAlCarrito(producto)" style="background-color: #586a6a;">
+                  <i class="bi bi-cart fw-bold"></i>
+                </button>
+                <button class="btn btn-sm poppins-regular" (click)="agregarAFavoritos(producto)" style="background-color: hsl(207, 16%, 86%);">
+                  <i class="bi bi-star fw-bold"></i>
+                </button>
+              </div>
+            </div>
+          </div>              
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aside para el carrito -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="asideCarrito" aria-labelledby="asideCarritoLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="asideCarritoLabel">Carrito de Compras</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>Productos en el carrito.</p>
+      <div *ngIf="success" class="alert alert-success">{{ success }}</div>
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+      <div *ngFor="let producto of carrito" class="d-flex align-items-center mb-2">
+        <img [src]="producto.producto.imagenURL" alt="{{producto.producto.nombre}}" class="img-fluid me-3" style="width: 50px; height: 50px; object-fit: cover;">
+        <div>
+          <h6 class="poppins-bold">{{ producto.producto.nombre }}</h6>
+          <p class="poppins-regular">{{ producto.producto.precio | currency }}</p>
+          <p class="poppins-regular"><strong>Subtotal: </strong>{{ producto.producto.precio! * producto.cantidad | currency }}</p>
+        </div>
+        <div class="ms-auto d-flex align-items-center">
+          <button class="btn btn-sm btn-outline-secondary" (click)="restarCantidad(producto)">-</button>
+          <span class="mx-2">{{ producto.cantidad }}</span>
+          <button class="btn btn-sm btn-outline-secondary" (click)="sumarCantidad(producto)">+</button>
+        </div>
+      </div>
+      <div *ngIf="carrito.length > 0" class="mt-4">
+        <h5 class="poppins-bold">Total: {{ total | currency }}</h5>
+      </div>
+    </div>
+    <div *ngIf="carrito.length > 0" class="offcanvas-footer mt-4 d-flex justify-content-between">
+      <button class="btn btn-danger w-50 m-2" (click)="vaciarCarrito()">Vaciar Carrito</button>
+      <button class="btn btn-primary w-50 m-2" (click)="generarPedido()">Pagar con Mercado Pago</button>
+    </div>
+  </div>
+
+  <button class="btn btn-primary btn-lg rounded-circle position-fixed" style="bottom: 20px; right: 20px;" (click)="abrirCarrito()">
+    <i class="bi bi-cart"></i>
+  </button>
+  <button class="btn btn-primary btn-lg rounded-circle position-fixed" style="bottom: 80px; right: 20px;" (click)="abrirFavoritos()">
+    <i class="bi bi-star"></i>
+  </button>
+
+  <!-- Aside para favoritos -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="asideFavoritos" aria-labelledby="asideFavoritosLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="asideFavoritosLabel">Favoritos</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div *ngFor="let favorito of cargarFavoritos()" class="d-flex align-items-center mb-2">
+        <img [src]="favorito.imagenURL" alt="{{favorito.nombre}}" class="img-fluid me-3" style="width: 50px; height: 50px; object-fit: cover;">
+        <div>
+          <h6 class="poppins-bold">{{ favorito.nombre }}</h6>
+          <p class="poppins-regular">{{ favorito.precio | currency }}</p>
+        </div>
+        <button class="btn btn-sm btn-outline-danger ms-auto" (click)="quitarFavorito(favorito)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

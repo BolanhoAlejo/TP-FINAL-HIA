@@ -1,0 +1,16 @@
+@url = http://localhost:3000/api/v1/promocion
+POST {{url}}/postPromocion
+
+content-type: application/json
+
+{
+    "descripcion": "laboris proident in do culpa",
+    "descuento": 10,
+    "productos": [
+        "668b16523627089fc05388b2"
+    ]
+}
+
+###
+
+GET {{url}}/getPromociones

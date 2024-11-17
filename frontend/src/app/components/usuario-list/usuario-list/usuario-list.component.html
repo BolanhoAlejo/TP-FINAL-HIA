@@ -1,0 +1,52 @@
+<div class="w-50 container mt-5">
+    <h2 class="text-center">Lista de Usuarios Registrados</h2>
+  
+    <div class="mt-3">
+      <button class="btn btn-success mb-3"><a class="nav-link text-black" href="/usuarioForm" routerLink="shop" routerLinkActive="active" ariaCurrentWhenActive="page">Nuevo Usuario</a></button>
+     
+    <button class="btn btn-primary mb-3" (click)="getAll()">Actualizar</button>
+  
+    <div class="mb-3">
+      <label for="id" class="form-label">ID del usuario</label>
+      <input type="text" class="form-control" id="id" [(ngModel)]="filterId">
+    </div>
+  
+    <button class="btn btn-secondary mb-3" (click)="getUsuarioById()">Obtener un usuario</button>
+  
+    <div *ngIf="usuarios.length > 0" class="mt-3" style="background-color: mediumpurple;">
+   
+      <h3>Usuarios</h3>
+      <table class="table table-condensed table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th style="text-align: center">ID</th>
+            <th style="text-align: center">Nombre</th>
+            <th style="text-align: center">Apellido</th>
+            <th style="text-align: center">E-mail</th>
+            <th style="text-align: center">telefono</th>
+            <th style="text-align: center">Nombre usuario</th>
+            <th style="text-align: center">contraseña</th>
+            <th style="text-align: center" colspan="2">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of usuarios">
+            <td>{{ u._id }}</td>
+            <td>{{ u.nombre }}</td>
+            <td>{{ u.apellido }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.telefono }}</td>
+            <td>{{ u.nombreUsuario }}</td>
+            <td>{{ u.contrasenia }}</td>
+            <td align="center">
+              <button class="btn btn-success mb-3"><a class="nav-link text-black" href="/usuarioForm/{{u._id}}" routerLink="shop" routerLinkActive="active" ariaCurrentWhenActive="page">Modificar</a></button>
+        </td>
+            <td align="center">
+              <button class="btn btn-danger btn-sm" (click)="deleteUsuario(u._id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>      
+      </table>
+    </div>
+    </div>
+  </div>

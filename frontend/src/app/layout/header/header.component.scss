@@ -1,0 +1,17 @@
+.navbar {
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .navbar.scrolled {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .navbar-nav .nav-link {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    background-color: #555; /* Color de fondo al hacer hover */
+    color: #fff; /* Color de texto al hacer hover */
+  }
+  

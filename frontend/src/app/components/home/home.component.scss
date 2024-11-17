@@ -1,0 +1,37 @@
+.container-fluid {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .card {
+    transition: transform 0.3s;
+    &:hover {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .btn-group .btn {
+    border-radius: 0;
+  }
+  
+  .btn-group .btn:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  
+  .btn-group .btn:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
