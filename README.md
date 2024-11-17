@@ -9,3 +9,5 @@ EXPRESS_SERVER_PORT=3000
 JWT_SECRET=Somethingveryrandom
 
 ACCESS_TOKEN=
+
+To create the containers, run docker-compose.yml.
