@@ -1,4 +1,4 @@
-To use the backend create the .env file with the following content:
+// To use the backend create the .env file with the following content:
 
 MONGODB_URI="mongodb://localhost/proyectofinal'
 
@@ -10,4 +10,7 @@ JWT_SECRET=Somethingveryrandom
 
 ACCESS_TOKEN=
 
-To create the containers, run docker-compose.yml.
+// To create the containers, run docker-compose.yml.
+
+// MongoDB Exporter: Dashboard ID 10619.
+// Node Exporter: Dashboard ID 1860.
